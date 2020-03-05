@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.claro.rbmservice.callback.messages.bean.SecretRequest;
+
 
 
 @RestController
@@ -35,15 +37,15 @@ public class RbmServiceCallbackController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "agentEvents", method = RequestMethod.POST)
-	//public ResponseEntity<String> agentEvents(@RequestBody EventsBean input) {
-	public ResponseEntity<String> agentEvents(@RequestBody String input) {
+	public ResponseEntity<SecretRequest> agentEvents(@RequestBody SecretRequest input) {
+	//public ResponseEntity<String> agentEvents(@RequestBody String input) {
 		logger.info("agentEvents==>Begin");
 
 		logger.info("[agentEvents] Reques entrante: " + input);			
 		
 		//Modificar termino OK
 		logger.info("agentEvents==>End");
-		return new ResponseEntity<String>("Ok", HttpStatus.OK);			
+		return ResponseEntity.ok(input);			
 	}
 	
 	
