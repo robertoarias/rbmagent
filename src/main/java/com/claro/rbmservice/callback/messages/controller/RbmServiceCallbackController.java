@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.claro.rbmservice.callback.messages.bean.SecretRequest;
+import com.google.gson.Gson;
 
 
 
@@ -37,15 +38,18 @@ public class RbmServiceCallbackController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "agentEvents", method = RequestMethod.POST)
-	public ResponseEntity<SecretRequest> agentEvents(@RequestBody SecretRequest input) {
+	public ResponseEntity<SecretRequest> agentEvents(@RequestBody String input) {
 	//public ResponseEntity<String> agentEvents(@RequestBody String input) {
 		logger.info("agentEvents==>Begin");
 
-		logger.info("[agentEvents] Reques entrante: " + input);			
+		logger.info("[agentEvents] Reques entrante token: " + input);	
+		
+		Gson gson = new Gson();
+		SecretRequest jsonOut = gson.fromJson(input, SecretRequest.class);
 		
 		//Modificar termino OK
 		logger.info("agentEvents==>End");
-		return ResponseEntity.ok(input);			
+		return ResponseEntity.ok(jsonOut);			
 	}
 	
 	
